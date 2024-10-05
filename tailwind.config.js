@@ -13,26 +13,26 @@ module.exports = {
   plugins: [
     nextui({
       themes: {
-        "purple-dark": {
-          extend: "dark", // <- inherit default values from dark theme
+        "blue-light": {
+          extend: "light", // <- inherit default values from dark theme
           colors: {
-            background: "#0D001A",
+            background: "#D5E1F8",
             foreground: "#ffffff",
             primary: {
-              50: "#3B096C",
-              100: "#520F83",
-              200: "#7318A2",
-              300: "#9823C2",
-              400: "#c031e2",
-              500: "#DD62ED",
-              600: "#F182F6",
-              700: "#FCADF9",
-              800: "#FDD5F9",
-              900: "#FEECFE",
-              DEFAULT: "#DD62ED",
+              50: "#D5E1F8",
+              100: "#D5E1F8",
+              200: "#AEC3F1",
+              300: "#7D96D6",
+              400: "#536AAD",
+              500: "#253877",
+              600: "#1B2A66",
+              700: "#121E55",
+              800: "#0B1445",
+              900: "#070D39",
+              DEFAULT: "#253877",
               foreground: "#ffffff",
             },
-            focus: "#F182F6",
+            focus: "#7D96D6",
           },
           layout: {
             disabledOpacity: "0.3",
