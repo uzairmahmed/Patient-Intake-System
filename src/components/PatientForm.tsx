@@ -3,6 +3,7 @@ import FormPage1 from './form/FormPage1';
 import FormPage2 from './form/FormPage2';
 import ProgressBar from './ProgressBar';
 import FormPage3 from './form/FormPage3';
+import FormPage4 from './form/FormPage4';
 
 interface FormValues {
     firstName: string;
@@ -63,6 +64,16 @@ const PatientForm: React.FC = () => {
                 )}
                 {currentPage === 2 && (
                     <FormPage3
+                        initialValues={formValues}
+                        onNext={(values) => {
+                            setFormValues({ ...formValues, ...values });
+                            setCurrentPage(3);
+                        }}
+                        onBack={() => setCurrentPage(1)}
+                    />
+                )}
+                {currentPage === 3 && (
+                    <FormPage4
                         initialValues={formValues}
                         onNext={(values) => {
                             setFormValues({ ...formValues, ...values });
