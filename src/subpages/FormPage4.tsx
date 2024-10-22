@@ -1,23 +1,33 @@
 import React from 'react';
-import { Formik, Form, Field } from 'formik';
-import { Input, Button, RadioGroup, Radio } from '@nextui-org/react';
+import { Formik, Form } from 'formik';
+import { Button } from '@nextui-org/react';
 import * as Yup from 'yup';
-import QuestionWithDetails from '../QuestionWithDetails';
-import QuestionWithInput from '../QuestionWithInput';
-import QuestionWithText from '../QuestionWithText';
-import QuestionWithCheckboxes from '../QuestionWithCheckboxes';
-import QuestionWithoutDetails from '../QuestionWithoutDetails';
+import {QuestionWithDetails, QuestionWithInput, QuestionWithCheckboxes, QuestionWithoutDetails} from '../components';
 
 // Validation schema for page 2
 const page4Schema = Yup.object().shape({
-    // phone: Yup.string().required('Phone number is required'),
-    // address: Yup.string().required('Address is required'),
+    seriousInjury: Yup.string().required('Please select if you had a serious injury'),
+    seriousInjuryDetails: Yup.string().required('Please provide details about the injury'),
+    lastMedicalCheckup: Yup.string().required('Please provide the date of your last medical checkup'),
+    allergies: Yup.array(),
+    otherAllergies: Yup.string().required('Please specify your other allergies'),
+    conditions: Yup.array(),
+    otherConditions: Yup.string().required('Please specify your other conditions'),
+    conditionsExplanation: Yup.string(),
+    smoking: Yup.string().required('Please indicate if you smoke or chew tobacco products'),
 });
 
 interface FormPage4Props {
     initialValues: {
-        phone: string;
-        address: string;
+        seriousInjury: string;
+        seriousInjuryDetails: string;
+        lastMedicalCheckup: string;
+        allergies: string[];
+        otherAllergies: string;
+        conditions: string[];
+        otherConditions: string;
+        conditionsExplanation: string;
+        smoking: string;
     };
     onNext: (values: any) => void;
     onBack: () => void;
@@ -38,14 +48,13 @@ const FormPage4: React.FC<FormPage4Props> = ({ initialValues, onNext, onBack }) 
                         </div>
                         <QuestionWithDetails
                             question="Have you had a serious injury in the past?"
-                            name="hadInjury"
-                            detailName="injuryDetails"
+                            name="seriousInjury"
+                            detailName="seriousInjuryDetails"
                         />
-
 
                         <QuestionWithInput
                             question="When was your last medical checkup?"
-                            name="lastCheckup"
+                            name="lastMedicalCheckup"
                         />
 
                         <QuestionWithCheckboxes
@@ -94,14 +103,12 @@ const FormPage4: React.FC<FormPage4Props> = ({ initialValues, onNext, onBack }) 
                                 'Osteoporosis',
                             ]}
                         />
-                        <QuestionWithInput name='conditionExplain' question='If so, please explain.' />
+                        <QuestionWithInput name='conditionsExplanation' question='If so, please explain.' />
 
                         <QuestionWithoutDetails
                             question="Do you smoke or chew tobacco products?"
                             name="smoking"
                         />
-
-
 
                     </div>
 

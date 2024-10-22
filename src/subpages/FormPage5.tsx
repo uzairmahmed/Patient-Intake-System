@@ -2,23 +2,55 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import { Input, Button, RadioGroup, Radio } from '@nextui-org/react';
 import * as Yup from 'yup';
-import QuestionWithDetails from '../QuestionWithDetails';
-import QuestionWithInput from '../QuestionWithInput';
-import QuestionWithText from '../QuestionWithText';
-import QuestionWithCheckboxes from '../QuestionWithCheckboxes';
-import QuestionWithoutDetails from '../QuestionWithoutDetails';
+import {QuestionWithDetails, QuestionWithInput, QuestionWithCheckboxes, QuestionWithoutDetails} from '../components';
 
 // Validation schema for page 2
 const page5Schema = Yup.object().shape({
-    phone: Yup.string().required('Phone number is required'),
-    address: Yup.string().required('Address is required'),
+    dentalConcerns: Yup.string().required('Please provide your dental concerns'),
+    lastDentalVisit: Yup.string().required('Please provide the date of your last dental visit'),
+    lastDentalCleaning: Yup.string().required('Please provide the date of your last dental cleaning'),
+    lastXRays: Yup.string().required('Please provide the date of your last X-rays'),
+    painRightNow: Yup.string().required('Please indicate if you are experiencing pain'),
+    painRightNowDetails: Yup.string().required('Please provide details about your pain'),
+    gumSwelling: Yup.string().required('Please indicate if you suffer from gum swelling'),
+    gumBleeding: Yup.string().required('Please indicate if your gums bleed when you brush'),
+    jawProblems: Yup.string().required('Please indicate if you suffer from jaw problems'),
+    dentalProblems: Yup.array(),
+    otherDentalProblems: Yup.string().required('Please specify other dental problems'),
+    upsettingExperience: Yup.string().required('Please indicate if you have had an upsetting experience'),
+    upsettingExperienceDetails: Yup.string().required('Please provide details about your upsetting experience'),
+    smileChange: Yup.string().required('Please indicate if you would like to change your smile'),
+    smileChangeDetails: Yup.string().required('Please provide details about your smile change'),
+    botherDental: Yup.string().required('Please indicate if anything about dental treatment bothers you'),
+    botherDentalDetails: Yup.string().required('Please provide details about what bothers you'),
+    premedication: Yup.string().required('Please indicate if you need premedication'),
+    premedicationDetails: Yup.string().required('Please provide details about premedication'),
+    medicationListing: Yup.string().required('Please list any medications you are routinely using'),
 });
 
 interface FormPage5Props {
     initialValues: {
-        phone: string;
-        address: string;
-    };
+        dentalConcerns: string;
+        lastDentalVisit: string;
+        lastDentalCleaning: string;
+        lastXRays: string;
+        painRightNow: string;
+        painRightNowDetails: string;
+        gumSwelling: string;
+        gumBleeding: string;
+        jawProblems: string;
+        dentalProblems: string[];
+        otherDentalProblems: string;
+        upsettingExperience: string;
+        upsettingExperienceDetails: string;
+        smileChange: string;
+        smileChangeDetails: string;
+        botherDental: string;
+        botherDentalDetails: string;
+        premedication: string;
+        premedicationDetails: string;
+        medicationListing: string;
+    }
     onNext: (values: any) => void;
     onBack: () => void;
 }
@@ -39,17 +71,17 @@ const FormPage5: React.FC<FormPage5Props> = ({ initialValues, onNext, onBack }) 
 
                         <QuestionWithInput
                             question="What concerns you most about your dental health?"
-                            name="lastCheckup"
+                            name="dentalConcerns"
                         />
 
                         <QuestionWithInput
                             question="Date of last dental visit."
-                            name="lastVisit"
+                            name="lastDentalVisit"
                         />
 
                         <QuestionWithInput
                             question="Date of last dental cleaning."
-                            name="lastCleaning"
+                            name="lastDentalCleaning"
                         />
 
                         <QuestionWithInput
@@ -70,7 +102,7 @@ const FormPage5: React.FC<FormPage5Props> = ({ initialValues, onNext, onBack }) 
 
                         <QuestionWithoutDetails
                             question="Do your gums often bleed when you brush your teeth?"
-                            name="gumBleed"
+                            name="gumBleeding"
                         />
 
                         <QuestionWithoutDetails
@@ -81,7 +113,7 @@ const FormPage5: React.FC<FormPage5Props> = ({ initialValues, onNext, onBack }) 
                         <QuestionWithCheckboxes
                             question="Have you experienced any of the following?"
                             name="dentalProblems"
-                            otherName="otherAllergies"
+                            otherName="otherDentalProblems"
                             options={[
                                 'Clicking of the jaw',
                                 'Pain in joint, ear or side of face',

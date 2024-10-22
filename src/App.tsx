@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import PatientForm from './components/PatientForm';
+import PatientForm from './pages/PatientForm';
 import Header from './components/Header';
 
 function App() { 
