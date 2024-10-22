@@ -2,13 +2,12 @@ import React from 'react';
 import { Field } from 'formik';
 import { Input, RadioGroup, Radio } from '@nextui-org/react';
 
-interface QuestionWithDetailsProps {
+interface QuestionWithoutDetailsProps {
     question: string;
     name: string; // Name for the radio group
-    detailName: string; // Name for the detail input
 }
 
-const QuestionWithDetails: React.FC<QuestionWithDetailsProps> = ({ question, name, detailName }) => {
+const QuestionWithoutDetails: React.FC<QuestionWithoutDetailsProps> = ({ question, name }) => {
     return (
         <div className="col-span-12 grid grid-cols-12 gap-4 items-center">
             {/* Question - 6 cols */}
@@ -53,23 +52,8 @@ const QuestionWithDetails: React.FC<QuestionWithDetailsProps> = ({ question, nam
                     </>
                 )}
             </Field>
-
-            {/* Text Box - 3 cols */}
-            <Field name={detailName}>
-                {({ field, meta }: any) => (
-                    <div className="col-span-4">
-                        <Input
-                            {...field}
-                            label="Please provide details"
-                            type="text"
-                            isInvalid={meta.error && meta.touched}
-                            errorMessage={meta.touched && meta.error ? meta.error : undefined}
-                        />
-                    </div>
-                )}
-            </Field>
         </div>
     );
 };
 
-export default QuestionWithDetails;
+export default QuestionWithoutDetails;

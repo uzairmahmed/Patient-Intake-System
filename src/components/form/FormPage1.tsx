@@ -33,6 +33,10 @@ const FormPage1: FC<FormPage1Props> = ({ initialValues, onNext }) => {
             {({ handleSubmit }) => (
                 <Form onSubmit={handleSubmit} className="flex flex-col h-full justify-between">
                     <div className="grid grid-cols-6 gap-10">
+                        <div className="col-span-6 grid grid-cols-12 gap-4 items-center">
+                            <h1 className="col-span-12 text-center font-semibold">CONTACT INFORMATION</h1>
+                        </div>
+
                         <Field name="firstName">
                             {({ field, meta }: { field: any; meta: any }) => (
                                 <Input
@@ -78,31 +82,31 @@ const FormPage1: FC<FormPage1Props> = ({ initialValues, onNext }) => {
                                     isRequired
                                     label="Date of Birth"
                                     type='date'
-                                    className="col-span-2"
+                                    className="col-span-3"
                                     isInvalid={meta.error && meta.touched} // Formik validation handling for isInvalid
                                     errorMessage={meta.touched && meta.error ? meta.error : undefined} // Display error message from Formik
                                 />
                             )}
                         </Field>
+                        {/* <Field name="gender">
+                            {({ field, meta }: { field: any; meta: any }) => (
+                                <Input
+                                    {...field}
+                                    label="Gender"
+                                    type='text'
+                                    className="col-span-2"
+                                    isInvalid={meta.error && meta.touched} // Formik validation handling for isInvalid
+                                    errorMessage={meta.touched && meta.error ? meta.error : undefined} // Display error message from Formik
+                                />
+                            )}
+                        </Field> */}
                         <Field name="healthcard">
                             {({ field, meta }: { field: any; meta: any }) => (
                                 <Input
                                     {...field}
                                     label="Health Card Number"
                                     type='text'
-                                    className="col-span-2"
-                                    isInvalid={meta.error && meta.touched} // Formik validation handling for isInvalid
-                                    errorMessage={meta.touched && meta.error ? meta.error : undefined} // Display error message from Formik
-                                />
-                            )}
-                        </Field>
-                        <Field name="occupation">
-                            {({ field, meta }: { field: any; meta: any }) => (
-                                <Input
-                                    {...field}
-                                    label="Occupation"
-                                    type='text'
-                                    className="col-span-2"
+                                    className="col-span-3"
                                     isInvalid={meta.error && meta.touched} // Formik validation handling for isInvalid
                                     errorMessage={meta.touched && meta.error ? meta.error : undefined} // Display error message from Formik
                                 />
@@ -115,7 +119,7 @@ const FormPage1: FC<FormPage1Props> = ({ initialValues, onNext }) => {
                                     isRequired
                                     label="Email"
                                     type='email'
-                                    className="col-span-2"
+                                    className="col-span-6"
                                     isInvalid={meta.error && meta.touched} // Formik validation handling for isInvalid
                                     errorMessage={meta.touched && meta.error ? meta.error : undefined} // Display error message from Formik
                                 />
@@ -128,7 +132,7 @@ const FormPage1: FC<FormPage1Props> = ({ initialValues, onNext }) => {
                                     label="Mobile Phone"
                                     isRequired
                                     type='tel'
-                                    className="col-span-2"
+                                    className="col-span-3"
                                     isInvalid={meta.error && meta.touched} // Connect Formik validation to NextUI's isInvalid
                                     errorMessage={meta.touched && meta.error ? meta.error : undefined} // Display error message if validation fails
                                 />
@@ -140,7 +144,7 @@ const FormPage1: FC<FormPage1Props> = ({ initialValues, onNext }) => {
                                     {...field}
                                     label="Home Phone"
                                     type='tel'
-                                    className="col-span-2"
+                                    className="col-span-3"
                                     isInvalid={meta.error && meta.touched} // Connect Formik validation to NextUI's isInvalid
                                     errorMessage={meta.touched && meta.error ? meta.error : undefined} // Display error message if validation fails
                                 />
@@ -153,12 +157,14 @@ const FormPage1: FC<FormPage1Props> = ({ initialValues, onNext }) => {
                                     label="Address"
                                     isRequired
                                     type='text'
-                                    className="col-span-2"
+                                    className="col-span-6"
                                     isInvalid={meta.error && meta.touched} // Connect Formik validation to NextUI's isInvalid
                                     errorMessage={meta.touched && meta.error ? meta.error : undefined} // Display error message if validation fails
                                 />
                             )}
                         </Field>
+
+
                         <Field name="city">
                             {({ field, meta }: { field: any; meta: any }) => (
                                 <Input
@@ -176,7 +182,7 @@ const FormPage1: FC<FormPage1Props> = ({ initialValues, onNext }) => {
                             {({ field, meta }: { field: any; meta: any }) => (
                                 <Select
                                     label="Province"
-                                    className="max-w-xs"
+                                    className="col-span-2"
                                 >
                                     {["ON", "QC", "BC", "AB", "MB", "SK", "NS", "NB", "NL", "PE", "NT", "YT", "NU"].map((province) => (
                                         <SelectItem key={province}>
@@ -194,14 +200,15 @@ const FormPage1: FC<FormPage1Props> = ({ initialValues, onNext }) => {
                                     label="Postal Code"
                                     isRequired
                                     type='text'
-                                    className="col-span-1"
+                                    className="col-span-2"
                                     isInvalid={meta.error && meta.touched} // Connect Formik validation to NextUI's isInvalid
                                     errorMessage={meta.touched && meta.error ? meta.error : undefined} // Display error message if validation fails
                                 />
                             )}
                         </Field>
                     </div>
-                    <div className="flex justify-end space-x-4">
+                    <div className="flex justify-between space-x-4 mt-10">
+                        <div></div>
                         <Button type="submit" color="primary">
                             Next
                         </Button>

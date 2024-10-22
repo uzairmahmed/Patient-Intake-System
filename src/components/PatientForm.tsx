@@ -4,6 +4,7 @@ import FormPage2 from './form/FormPage2';
 import ProgressBar from './ProgressBar';
 import FormPage3 from './form/FormPage3';
 import FormPage4 from './form/FormPage4';
+import FormPage5 from './form/FormPage5';
 
 interface FormValues {
     firstName: string;
@@ -39,9 +40,9 @@ const PatientForm: React.FC = () => {
         <div className="flex flex-col h-full">
             <ProgressBar
                 currentPage={currentPage}
-                totalPages={3} // Update based on total number of pages
+                totalPages={5} // Update based on total number of pages
             />
-            <div className='flex flex-col m-5 p-5 h-full border'>
+            <div className='flex flex-col m-5 p-5 h-fit border'>
                 {currentPage === 0 && (
                     <FormPage1
                         initialValues={formValues}
@@ -77,25 +78,34 @@ const PatientForm: React.FC = () => {
                         initialValues={formValues}
                         onNext={(values) => {
                             setFormValues({ ...formValues, ...values });
-                            setCurrentPage(3);
+                            setCurrentPage(4);
                         }}
-                        onBack={() => setCurrentPage(1)}
+                        onBack={() => setCurrentPage(2)}
+                    />
+                )}
+
+                {currentPage === 4 && (
+                    <FormPage5
+                        initialValues={formValues}
+                        onNext={(values) => {
+                            setFormValues({ ...formValues, ...values });
+                            setCurrentPage(5);
+                        }}
+                        onBack={() => setCurrentPage(3)}
                     />
                 )}
 
 
                 {/* {currentPage === 2 && ( */}
-                    {/* <FormPage3 */}
-                        {/* initialValues={formValues} */}
-                        {/* onSubmit={(values) => { */}
-                            {/* handleFinalSubmit({ ...formValues, ...values }); */}
-                        {/* }} */}
-                        {/* onBack={() => setCurrentPage(1)} */}
-                    {/* /> */}
+                {/* <FormPage3 */}
+                {/* initialValues={formValues} */}
+                {/* onSubmit={(values) => { */}
+                {/* handleFinalSubmit({ ...formValues, ...values }); */}
+                {/* }} */}
+                {/* onBack={() => setCurrentPage(1)} */}
+                {/* /> */}
                 {/* )} */}
             </div>
-
-
         </div>
     );
 };

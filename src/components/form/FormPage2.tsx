@@ -160,7 +160,7 @@ const FormPage2: React.FC<FormPage2Props> = ({ initialValues, onNext, onBack }) 
                         </div>
                     </div>
 
-                    <div className="flex justify-between space-x-4">
+                    <div className="flex justify-between space-x-4 mt-10">
                         <Button onClick={onBack} color="default">
                             Back
                         </Button>
