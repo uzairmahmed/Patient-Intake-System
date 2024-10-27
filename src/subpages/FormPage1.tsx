@@ -50,7 +50,7 @@ const FormPage1: FC<FormPage1Props> = ({ initialValues, onNext }) => {
             validationSchema={page1Schema}
             onSubmit={(values) => onNext(values)}
         >
-            {({ handleSubmit }) => (
+            {({ handleSubmit, errors }) => (
                 <Form onSubmit={handleSubmit} className="flex flex-col h-full justify-between">
                     <div className="grid grid-cols-6 gap-10">
                         <div className="col-span-6 grid grid-cols-12 gap-4 items-center">
@@ -138,19 +138,27 @@ const FormPage1: FC<FormPage1Props> = ({ initialValues, onNext }) => {
                         />
 
                         <Field name="province">
-                            {({ field, meta }: { field: any; meta: any }) => (
+                            {({ field, form, meta }: { field: any; form: any; meta: any }) => (
                                 <Select
                                     label="Province *"
                                     className="col-span-2"
+                                    selectedKeys={new Set([field.value])} // This ensures the value is displayed
+                                    onChange={(selected) => {
+                                        const value = Array.from(selected).join(""); // Extract selected value
+                                        form.setFieldValue(field.name, value); // Update Formik's field value
+                                    }}
+                                    isInvalid={meta.error && meta.touched} // Handle validation state
+                                    errorMessage={meta.error && meta.touched ? meta.error : undefined} // Display validation message
                                 >
                                     {["ON", "QC", "BC", "AB", "MB", "SK", "NS", "NB", "NL", "PE", "NT", "YT", "NU"].map((province) => (
-                                        <SelectItem key={province}>
+                                        <SelectItem key={province} value={province}>
                                             {province}
                                         </SelectItem>
                                     ))}
                                 </Select>
                             )}
                         </Field>
+
 
                         <InputWithText
                             question='Postal Code *'
@@ -162,7 +170,9 @@ const FormPage1: FC<FormPage1Props> = ({ initialValues, onNext }) => {
                     </div>
                     <div className="flex justify-between space-x-4 mt-10">
                         <div></div>
-                        <Button type="submit" color="primary">
+                        <Button onClick={() => {
+                            console.log('Errors:', errors); // Log errors when Next is clicked
+                        }} type="submit" color="primary">
                             Next
                         </Button>
                     </div>
