@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ProgressBar } from '../components';
-import { FormPage1, FormPage2, FormPage3, FormPage4, FormPage5 } from '../subpages';
+import { FormPage1, FormPage2, FormPage3, FormPage4, FormPage5, FormPageFinal } from '../subpages';
+import FormPagePost from '../subpages/FormPagePost';
 
 interface FormValues {
     firstName: string;
@@ -39,35 +40,40 @@ interface FormValues {
     employerForInsurance2: string;
     policyNumber2: string;
     idNumber2: string;
+    lastMedicalCheckup: string;
+    medicationListing: string;
+    smoking: string;
+    alcohol: string;
     seriousInjury: string;
     seriousInjuryDetails: string;
-    lastMedicalCheckup: string;
-    allergies: [];
+    allergies: string[];
     otherAllergies: string;
-    conditions: [];
+    devices: string[];
+    otherDevices: string;
+    conditions: string[];
     otherConditions: string;
     conditionsExplanation: string;
-    smoking: string;
     dentalConcerns: string;
+    painRightNow: string;
+    painRightNowDetails: string;
     lastDentalVisit: string;
     lastDentalCleaning: string;
     lastXRays: string;
-    painRightNow: string;
-    painRightNowDetails: string;
-    gumSwelling: string;
     gumBleeding: string;
-    jawProblems: string;
+    gumSwelling: string;
     dentalProblems: string[];
     otherDentalProblems: string;
+    jawProblems: string;
     upsettingExperience: string;
     upsettingExperienceDetails: string;
-    smileChange: string;
-    smileChangeDetails: string;
     botherDental: string;
     botherDentalDetails: string;
+    smileChange: string;
+    smileChangeDetails: string;
     premedication: string;
     premedicationDetails: string;
-    medicationListing: string;
+    factualInfo: boolean;
+    signature: string;
 }
 
 const PatientForm: React.FC = () => {
@@ -109,35 +115,40 @@ const PatientForm: React.FC = () => {
         employerForInsurance2: '',
         policyNumber2: '',
         idNumber2: '',
+        lastMedicalCheckup: '',
+        medicationListing: '',
+        smoking: '',
+        alcohol: '',
         seriousInjury: '',
         seriousInjuryDetails: '',
-        lastMedicalCheckup: '',
         allergies: [],
         otherAllergies: '',
+        devices: [],
+        otherDevices: '',
         conditions: [],
         otherConditions: '',
         conditionsExplanation: '',
-        smoking: '',
         dentalConcerns: '',
+        painRightNow: '',
+        painRightNowDetails: '',
         lastDentalVisit: '',
         lastDentalCleaning: '',
         lastXRays: '',
-        painRightNow: '',
-        painRightNowDetails: '',
-        gumSwelling: '',
         gumBleeding: '',
-        jawProblems: '',
+        gumSwelling: '',
         dentalProblems: [],
         otherDentalProblems: '',
+        jawProblems: '',
         upsettingExperience: '',
         upsettingExperienceDetails: '',
-        smileChange: '',
-        smileChangeDetails: '',
         botherDental: '',
         botherDentalDetails: '',
+        smileChange: '',
+        smileChangeDetails: '',
         premedication: '',
         premedicationDetails: '',
-        medicationListing: '',
+        factualInfo: false,
+        signature: '',
 
     });
 
@@ -151,7 +162,7 @@ const PatientForm: React.FC = () => {
         <div className="flex flex-col h-full">
             <ProgressBar
                 currentPage={currentPage}
-                totalPages={5}
+                totalPages={6}
             />
             <div className='flex flex-col m-5 p-5 h-fit border'>
                 {currentPage === 0 && (
@@ -208,15 +219,20 @@ const PatientForm: React.FC = () => {
                 )}
 
 
-                {/* {currentPage === 2 && ( */}
-                {/* <FormPage3 */}
-                {/* initialValues={formValues} */}
-                {/* onSubmit={(values) => { */}
-                {/* handleFinalSubmit({ ...formValues, ...values }); */}
-                {/* }} */}
-                {/* onBack={() => setCurrentPage(1)} */}
-                {/* /> */}
-                {/* )} */}
+                {currentPage === 5 && (
+                    <FormPageFinal
+                        initialValues={formValues}
+                        onSubmit={(values) => {
+                            setCurrentPage(6);
+                            handleFinalSubmit({ ...formValues, ...values });
+                        }}
+                        onBack={() => setCurrentPage(4)}
+                    />
+                )}
+
+                {currentPage === 6 && (
+                    <FormPagePost />
+                )}
             </div>
         </div>
     );

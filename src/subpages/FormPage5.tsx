@@ -2,54 +2,55 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import { Input, Button, RadioGroup, Radio } from '@nextui-org/react';
 import * as Yup from 'yup';
-import {QuestionWithDetails, QuestionWithInput, QuestionWithCheckboxes, QuestionWithoutDetails} from '../components';
+import { QuestionWithDetails, QuestionWithInput, QuestionWithCheckboxes, QuestionWithoutDetails } from '../components';
 
 // Validation schema for page 2
 const page5Schema = Yup.object().shape({
-    dentalConcerns: Yup.string().required('Please provide your dental concerns'),
-    lastDentalVisit: Yup.string().required('Please provide the date of your last dental visit'),
-    lastDentalCleaning: Yup.string().required('Please provide the date of your last dental cleaning'),
-    lastXRays: Yup.string().required('Please provide the date of your last X-rays'),
-    painRightNow: Yup.string().required('Please indicate if you are experiencing pain'),
-    painRightNowDetails: Yup.string().required('Please provide details about your pain'),
-    gumSwelling: Yup.string().required('Please indicate if you suffer from gum swelling'),
-    gumBleeding: Yup.string().required('Please indicate if your gums bleed when you brush'),
-    jawProblems: Yup.string().required('Please indicate if you suffer from jaw problems'),
+    dentalConcerns: Yup.string(),
+    painRightNow: Yup.string(),
+    painRightNowDetails: Yup.string(),
+    lastDentalVisit: Yup.string(),
+    lastDentalCleaning: Yup.string(),
+    lastXRays: Yup.string(),
+    gumBleeding: Yup.string(),
+    gumSwelling: Yup.string(),
     dentalProblems: Yup.array(),
-    otherDentalProblems: Yup.string().required('Please specify other dental problems'),
-    upsettingExperience: Yup.string().required('Please indicate if you have had an upsetting experience'),
-    upsettingExperienceDetails: Yup.string().required('Please provide details about your upsetting experience'),
-    smileChange: Yup.string().required('Please indicate if you would like to change your smile'),
-    smileChangeDetails: Yup.string().required('Please provide details about your smile change'),
-    botherDental: Yup.string().required('Please indicate if anything about dental treatment bothers you'),
-    botherDentalDetails: Yup.string().required('Please provide details about what bothers you'),
-    premedication: Yup.string().required('Please indicate if you need premedication'),
-    premedicationDetails: Yup.string().required('Please provide details about premedication'),
-    medicationListing: Yup.string().required('Please list any medications you are routinely using'),
+    otherDentalProblems: Yup.string(),
+    jawProblems: Yup.string(),
+    upsettingExperience: Yup.string(),
+    upsettingExperienceDetails: Yup.string(),
+    botherDental: Yup.string(),
+    botherDentalDetails: Yup.string(),
+    smileChange: Yup.string(),
+    smileChangeDetails: Yup.string(),
+    premedication: Yup.string(),
+    premedicationDetails: Yup.string(),
+    medicationListing: Yup.string(),
+
 });
 
 interface FormPage5Props {
     initialValues: {
         dentalConcerns: string;
+        painRightNow: string;
+        painRightNowDetails: string;
         lastDentalVisit: string;
         lastDentalCleaning: string;
         lastXRays: string;
-        painRightNow: string;
-        painRightNowDetails: string;
-        gumSwelling: string;
         gumBleeding: string;
-        jawProblems: string;
+        gumSwelling: string;
         dentalProblems: string[];
         otherDentalProblems: string;
+        jawProblems: string;
         upsettingExperience: string;
         upsettingExperienceDetails: string;
-        smileChange: string;
-        smileChangeDetails: string;
         botherDental: string;
         botherDentalDetails: string;
+        smileChange: string;
+        smileChangeDetails: string;
         premedication: string;
         premedicationDetails: string;
-        medicationListing: string;
+        
     }
     onNext: (values: any) => void;
     onBack: () => void;
@@ -74,6 +75,12 @@ const FormPage5: React.FC<FormPage5Props> = ({ initialValues, onNext, onBack }) 
                             name="dentalConcerns"
                         />
 
+                        <QuestionWithDetails
+                            question="Are you currently experiencing any pain or discomfort?"
+                            name="painRightNow"
+                            detailName="painRightNowDetails"
+                        />
+
                         <QuestionWithInput
                             question="Date of last dental visit."
                             name="lastDentalVisit"
@@ -89,25 +96,13 @@ const FormPage5: React.FC<FormPage5Props> = ({ initialValues, onNext, onBack }) 
                             name="lastXRays"
                         />
 
-                        <QuestionWithDetails
-                            question="Are you having pain at this time?"
-                            name="painRightNow"
-                            detailName="painRightNowDetails"
-                        />
-
                         <QuestionWithoutDetails
-                            question="Do you suffer from pain and/or swelling of the gums?"
-                            name="gumSwelling"
-                        />
-
-                        <QuestionWithoutDetails
-                            question="Do your gums often bleed when you brush your teeth?"
+                            question="Do your gums bleed when brushing?"
                             name="gumBleeding"
                         />
-
                         <QuestionWithoutDetails
-                            question="Do you suffer from problems of the jaw?"
-                            name="jawProblems"
+                            question="Do you experience pain or swelling in the gums?"
+                            name="gumSwelling"
                         />
 
                         <QuestionWithCheckboxes
@@ -123,25 +118,25 @@ const FormPage5: React.FC<FormPage5Props> = ({ initialValues, onNext, onBack }) 
                         />
 
                         <QuestionWithDetails
-                            question="Have you ever had an upsetting experience in a dental office?"
+                            question="Have you ever had an upsetting experience at a dental office?"
                             name="upsettingExperience"
                             detailName="upsettingExperienceDetails"
                         />
 
                         <QuestionWithDetails
-                            question="If you could, what features of your smile would you like to change?"
+                            question="Is there anything that bothers you about receiving dental treatment?"
+                            name="botherDental"
+                            detailName="botherDentalDetails"
+                        />
+                        <QuestionWithDetails
+                            question="What features of your smile would you like to change, if any?"
                             name="smileChange"
                             detailName="smileChangeDetails"
                         />
 
-                        <QuestionWithDetails
-                            question="Is there anything else about having dental treatment that bothers you?"
-                            name="botherDental"
-                            detailName="botherDentalDetails"
-                        />
 
                         <QuestionWithDetails
-                            question="Are you required to take any premedication before dental treatment advised by your general physician?"
+                            question="Have you been advised to take premedication before dental treatment?"
                             name="premedication"
                             detailName="premedicationDetails"
                         />

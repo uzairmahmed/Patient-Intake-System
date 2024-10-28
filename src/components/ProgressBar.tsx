@@ -11,7 +11,7 @@ const ProgressBar: FC<ProgressBarProps> = ({ currentPage, totalPages }) => {
         <div className="h-16 bg-background px-10">
             <div className="flex flex-row h-full items-center gap-10">
                 <Progress
-                    label={`Step ${currentPage + 1} of ${totalPages}`}
+                    label={currentPage !== 6 ? `Step ${currentPage + 1} of ${totalPages}` : `Step ${currentPage } of ${totalPages}`}
                     value={((currentPage) / totalPages) * 100}
                     color="primary"
                     showValueLabel={true}

@@ -12,11 +12,11 @@ const Header: FC<HeaderProps> = ({ }) => {
                 <p className="font-bold text-inherit">Smiline Dentistry</p>
             </NavbarBrand>
             <NavbarContent className="hidden sm:flex gap-4" justify="center">
-            <p className="font-bold text-inherit">Patient Intake Form</p>
+                <p className="font-bold text-inherit">Patient Intake Form</p>
             </NavbarContent>
             <NavbarContent justify="end">
                 <NavbarItem>
-                    <Button as={Link} color="danger" href="#" variant="flat">
+                    <Button as={Link} color="danger" href="#" variant="flat" onClick={() => window.location.reload()}>
                         Reset Form
                     </Button>
                 </NavbarItem>
