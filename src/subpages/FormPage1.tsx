@@ -143,9 +143,8 @@ const FormPage1: FC<FormPage1Props> = ({ initialValues, onNext }) => {
                                     label="Province *"
                                     className="col-span-2"
                                     selectedKeys={new Set([field.value])} // This ensures the value is displayed
-                                    onChange={(selected) => {
-                                        const value = Array.from(selected).join(""); // Extract selected value
-                                        form.setFieldValue(field.name, value); // Update Formik's field value
+                                    onChange={(e) => {
+                                        form.setFieldValue(field.name, e.target.value); // Update Formik's field value
                                     }}
                                     isInvalid={meta.error && meta.touched} // Handle validation state
                                     errorMessage={meta.error && meta.touched ? meta.error : undefined} // Display validation message

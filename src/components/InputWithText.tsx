@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field } from 'formik';
-import { Input, RadioGroup, Radio } from '@nextui-org/react';
+import { Input } from '@nextui-org/react';
 
 interface InputWithTextProps {
     question: string;

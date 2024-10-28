@@ -24,6 +24,7 @@ interface FormValues {
     doctorName: string;
     doctorClinic: string;
     doctorPhone: string;
+    isCovered: string,
     nameOfInsured1: string;
     birthdateOfInsured1: string;
     relationshipToInsured1: string;
@@ -93,6 +94,7 @@ const PatientForm: React.FC = () => {
         doctorName: '',
         doctorClinic: '',
         doctorPhone: '',
+        isCovered: 'notcovered',
         nameOfInsured1: '',
         birthdateOfInsured1: '',
         relationshipToInsured1: '',
@@ -169,6 +171,7 @@ const PatientForm: React.FC = () => {
                             console.log('clicked');
                             setCurrentPage(2);
                         }}
+                        birthdate={formValues.dob}
                         onBack={() => setCurrentPage(0)}
                     />
                 )}
