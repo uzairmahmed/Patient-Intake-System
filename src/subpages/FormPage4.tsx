@@ -113,7 +113,7 @@ const FormPage4: React.FC<FormPage4Props> = ({ initialValues, onNext, onBack }) 
                         />
 
                         <QuestionWithCheckboxes
-                            question="Do you have or have you had any of the following? (Select All That Apply)"
+                            question="Do you have or have you had any of the following conditions? (Select All That Apply)"
                             name="conditions"
                             otherName="otherConditions"
                             options={[

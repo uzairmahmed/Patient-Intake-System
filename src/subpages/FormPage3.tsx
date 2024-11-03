@@ -118,7 +118,7 @@ const FormPage3: React.FC<FormPage3Props> = ({ initialValues, onNext, onBack }) 
                                         <InputWithText
                                             cols={1}
                                             name='relationshipToInsured1'
-                                            question='Relationship of Insured'
+                                            question='Relationship to Insured'
                                             type='text'
                                             required={false}
                                         />
@@ -126,13 +126,6 @@ const FormPage3: React.FC<FormPage3Props> = ({ initialValues, onNext, onBack }) 
                                             cols={1}
                                             name='insuranceCarrier1'
                                             question='Insurance Carrier'
-                                            type='text'
-                                            required={false}
-                                        />
-                                        <InputWithText
-                                            cols={1}
-                                            name='employerForInsurance1'
-                                            question='Employer / School'
                                             type='text'
                                             required={false}
                                         />
@@ -147,6 +140,13 @@ const FormPage3: React.FC<FormPage3Props> = ({ initialValues, onNext, onBack }) 
                                             cols={1}
                                             name='idNumber1'
                                             question='ID/Certificate Number'
+                                            type='text'
+                                            required={false}
+                                        />
+                                        <InputWithText
+                                            cols={1}
+                                            name='employerForInsurance1'
+                                            question='Employer / School'
                                             type='text'
                                             required={false}
                                         />
@@ -172,7 +172,7 @@ const FormPage3: React.FC<FormPage3Props> = ({ initialValues, onNext, onBack }) 
                                         <InputWithText
                                             cols={1}
                                             name='relationshipToInsured2'
-                                            question='Relationship of Insured'
+                                            question='Relationship to Insured'
                                             type='text'
                                             required={false}
                                         />
@@ -180,13 +180,6 @@ const FormPage3: React.FC<FormPage3Props> = ({ initialValues, onNext, onBack }) 
                                             cols={1}
                                             name='insuranceCarrier2'
                                             question='Insurance Carrier'
-                                            type='text'
-                                            required={false}
-                                        />
-                                        <InputWithText
-                                            cols={1}
-                                            name='employerForInsurance2'
-                                            question='Employer / School'
                                             type='text'
                                             required={false}
                                         />
@@ -201,6 +194,13 @@ const FormPage3: React.FC<FormPage3Props> = ({ initialValues, onNext, onBack }) 
                                             cols={1}
                                             name='idNumber2'
                                             question='ID/Certificate Number'
+                                            type='text'
+                                            required={false}
+                                        />
+                                        <InputWithText
+                                            cols={1}
+                                            name='employerForInsurance2'
+                                            question='Employer / School'
                                             type='text'
                                             required={false}
                                         />

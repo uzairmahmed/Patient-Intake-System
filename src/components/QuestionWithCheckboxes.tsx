@@ -30,7 +30,7 @@ const QuestionWithCheckboxes: React.FC<QuestionWithCheckboxesProps> = ({ questio
                                     <Checkbox
                                         isSelected={values[name]?.includes(option)} // Check if the option is selected
                                         onChange={(e) => {
-                                            if (e) {
+                                            if (e.target.checked) {
                                                 push(option); // Add to array if checked
                                             } else {
                                                 const idx = values[name].indexOf(option);
@@ -50,7 +50,7 @@ const QuestionWithCheckboxes: React.FC<QuestionWithCheckboxesProps> = ({ questio
                         isSelected={showOtherInput}
                         onChange={(e) => {
                             setShowOtherInput(e.target.checked);
-                            if (!e) {
+                            if (!e.target.checked) {
                                 values[otherName] = ''; // Clear the other field if unchecked
                             }
                         }}

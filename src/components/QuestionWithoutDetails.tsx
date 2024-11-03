@@ -23,7 +23,7 @@ const QuestionWithoutDetails: React.FC<QuestionWithoutDetailsProps> = ({ questio
                             <h1 className="-ml-2">Yes</h1>
                             <RadioGroup
                                 value={field.value}
-                                onChange={(value) => form.setFieldValue(name, value)}
+                                onChange={(e) => form.setFieldValue(name, e.target.value)}
                                 label=""
                             >
                                 <Radio value="yes"></Radio>
@@ -33,7 +33,7 @@ const QuestionWithoutDetails: React.FC<QuestionWithoutDetailsProps> = ({ questio
                             <h1 className="-ml-2">No</h1>
                             <RadioGroup
                                 value={field.value}
-                                onChange={(value) => form.setFieldValue(name, value)}
+                                onChange={(e) => form.setFieldValue(name, e.target.value)}
                                 label=""
                             >
                                 <Radio value="no"></Radio>
@@ -43,7 +43,7 @@ const QuestionWithoutDetails: React.FC<QuestionWithoutDetailsProps> = ({ questio
                             <h1 className="-ml-2">Unsure</h1>
                             <RadioGroup
                                 value={field.value}
-                                onChange={(value) => form.setFieldValue(name, value)}
+                                onChange={(e) => form.setFieldValue(name, e.target.value)}
                                 label=""
                             >
                                 <Radio value="notsure"></Radio>

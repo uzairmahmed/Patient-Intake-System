@@ -59,7 +59,7 @@ const FormPageFinal: React.FC<FormPageFinalProps> = ({ initialValues, onSubmit, 
                                     isSelected={field.value}
                                     onChange={(e) => setFieldValue('factualInfo', e.target.checked)}
                                 >
-                                    I confirm that the information provided is factual.
+                                    By submitting this form, you confirm that all information provided is accurate, complete, and truthful to the best of your knowledge. You understand that Smiline Family Dentistry relies on the information you submit to deliver effective and personalized dental care. Any false, misleading, or incomplete information may affect the quality of services provided. By submitting, you agree to notify Smiline Family Dentistry of any changes to your information as soon as possible.
                                 </Checkbox>
                             )}
                         </Field>
