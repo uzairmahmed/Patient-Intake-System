@@ -95,9 +95,6 @@ const FormPage5: React.FC<FormPage5Props> = ({ initialValues, onNext, onBack }) 
                             detailName="premedicationDetails"
                         />
 
-                        <QuestionWithInput name='medicationListing' question='Please list any medications you are routinely using.' />
-
-
                     </div>
 
                     <div className="flex justify-between space-x-4 mt-10">

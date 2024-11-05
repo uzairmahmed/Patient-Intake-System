@@ -27,7 +27,7 @@ const FormPage3: React.FC<FormPage3Props> = ({ initialValues, onNext, onBack }) 
                             {({ field, meta, form }: { field: any; meta: any; form: any }) => (
                                 <RadioGroup
                                     className="col-span-3"
-                                    label="Are you covered by Dental Insurance? (Including Canadian Dental Care Plan (CDCB) and Healthy Smiles of Ontario (HSO)"
+                                    label="Are you covered by Dental Insurance? (Including Canadian Dental Care Plan (CDCB) and Healthy Smiles of Ontario (HSO) *"
                                     value={field.value} // Bind value from Formik field
                                     onChange={(e) => {
                                         form.setFieldValue('isCovered', e.target.value); // Set value directly as a string

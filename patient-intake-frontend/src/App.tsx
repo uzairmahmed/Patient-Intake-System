@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import PatientForm from './pages/PatientForm';
 import Header from './components/Header';
+import { useState } from 'react';
+import TitleScreen from './pages/TitleScreen';
 
-function App() { 
+function App() {
+  const [enter, setEnter] = useState(false);
+
   return (
     <div className="flex flex-col h-screen purple-dark text-foreground bg-background">
-      <Header />
-      <PatientForm />
+      {enter ?
+        <>
+          <Header />
+          <PatientForm />
+        </> :
+        <TitleScreen enterForm={() => setEnter(true)}/>
+      }
     </div>
   );
 }

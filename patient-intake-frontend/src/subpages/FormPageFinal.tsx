@@ -90,7 +90,7 @@ const FormPageFinal: React.FC<FormPageFinalProps> = ({ initialValues, onSubmit, 
                                 </div>
                             </div>
 
-
+                            <p className='text-xs font-medium pt-10'>Privacy Policy</p>
                             <p className='text-xs'>
                                 At Smiline Family Dentistry, your privacy is our priority. We are committed to protecting your personal health information in compliance with Ontario's Personal Health Information Protection Act (PHIPA) and Canada's Personal Information Protection and Electronic Documents Act (PIPEDA). We collect and use your personal information to provide you with safe and effective dental care. We follow industry-standard security practices, including data encryption and access controls, to protect your information from unauthorized access or disclosure. You have the right to access your information and request corrections if necessary. You may withdraw your consent at any time. If you choose to do so, please inform our staff, and we will discontinue the collection of your information. Your personal information will only be kept for as long as necessary to fulfill the purpose for which it was collected or as required by law. After this period, it will be securely deleted from our systems. For more information on our privacy practices or to make a request regarding your personal information, please contact us at contact@smilinedentistry.ca. By proceeding, you consent to the collection, use, and storage of your information as outlined in this notice.
                             </p>
