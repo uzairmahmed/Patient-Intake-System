@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import pytz 
 from datetime import datetime
 from google.cloud import storage, pubsub_v1
 from google.cloud.pubsub_v1.subscriber import exceptions as sub_exceptions
@@ -9,6 +10,8 @@ import servicemanager
 import win32serviceutil
 import win32service
 import win32event
+
+local_timezone = pytz.timezone("America/New_York")
 
 class MyService(win32serviceutil.ServiceFramework):
     _svc_name_ = "PatientIntakeDownloaderService"
@@ -39,6 +42,27 @@ def download_file(bucket_name, blob_name, upload_date, base_folder, storage_clie
     blob.download_to_filename(destination_path)
     servicemanager.LogInfoMsg(f"Downloaded {blob_name} to {destination_path}")
 
+def sync_local_with_bucket(bucket_name, base_folder, storage_client):
+    """
+    Sync the local folder with the bucket to ensure no files in the bucket are missed.
+    Only files that are not already in the local directory will be downloaded.
+    """
+    bucket = storage_client.bucket(bucket_name)
+    blobs = bucket.list_blobs()
+
+    for blob in blobs:
+        # Determine the destination folder and path based on the blob's upload date
+        blob_date = blob.time_created.astimezone(local_timezone).strftime('%Y-%m-%d')
+        date_folder = os.path.join(base_folder, blob_date)
+        local_file_path = os.path.join(date_folder, os.path.basename(blob.name))
+
+        # Download the file only if it does not exist in the local directory
+        if not os.path.exists(local_file_path):
+            os.makedirs(date_folder, exist_ok=True)
+            blob.download_to_filename(local_file_path)
+            print(f"Synced missing file from bucket: {blob.name} to {local_file_path}")
+    
+
 def callback(message, base_folder, storage_client):
     try:
         print("Received message:", message)
@@ -46,8 +70,10 @@ def callback(message, base_folder, storage_client):
         bucket_name = data["bucket"]
         blob_name = data["name"]
         
+        print(data)
         if blob_name.endswith(".pdf"):
-            upload_date = datetime.utcnow().strftime('%Y-%m-%d')
+            
+            upload_date = datetime.now(local_timezone).strftime('%Y-%m-%d')
             download_file(bucket_name, blob_name, upload_date, base_folder, storage_client)
         
         message.ack()
@@ -60,6 +86,7 @@ def run_pubsub_listener():
     credentials_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
     PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT_ID")
     SUBSCRIPTION_NAME = os.getenv("GOOGLE_CLOUD_SUBSCRIPTION_NAME")
+    BUCKET_NAME = os.getenv("GOOGLE_CLOUD_BUCKET_NAME")
 
     # Define the download folder on Desktop/New-Patients
     BASE_DOWNLOAD_FOLDER = os.path.join(os.path.expanduser("~"), "Desktop", "New-Patients")
@@ -70,6 +97,8 @@ def run_pubsub_listener():
     subscriber = pubsub_v1.SubscriberClient()
     subscription_path = subscriber.subscription_path(PROJECT_ID, SUBSCRIPTION_NAME)
     
+    sync_local_with_bucket(BUCKET_NAME, BASE_DOWNLOAD_FOLDER, storage_client)
+
     # Modified callback function to accept parameters
     def pubsub_callback(message):
         callback(message, BASE_DOWNLOAD_FOLDER, storage_client)

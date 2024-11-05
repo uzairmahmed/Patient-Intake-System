@@ -3,6 +3,7 @@ import { ProgressBar } from '../components';
 import { FormPage1, FormPage2, FormPage3, FormPage4, FormPage5, FormPageFinal } from '../subpages';
 import FormPagePost from '../subpages/FormPagePost';
 import { submitFormData } from '../api/api';
+import FormPageError from '../subpages/FormPageError';
 
 interface FormValues {
     firstName: string;
@@ -161,7 +162,7 @@ const PatientForm: React.FC = () => {
         if (formStatus) {
             setCurrentPage(6);
         } else {
-
+            setCurrentPage(7)
         }
     };
 
@@ -237,8 +238,13 @@ const PatientForm: React.FC = () => {
                 )}
 
                 {currentPage === 6 && (
-                    <FormPagePost
+                    <FormPagePost />
+                )}
+
+                {currentPage === 7 && (
+                    <FormPageError
                         onBack={() => setCurrentPage(5)}
+                        onReSubmit={() => handleFinalSubmit({...formValues})}
                     />
                 )}
             </div>

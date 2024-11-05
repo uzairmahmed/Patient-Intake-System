@@ -59,8 +59,7 @@ const FormPageFinal: React.FC<FormPageFinalProps> = ({ initialValues, onSubmit, 
                                     isSelected={field.value}
                                     onChange={(e) => setFieldValue('factualInfo', e.target.checked)}
                                 >
-                                    By submitting this form, you confirm that all information provided is accurate, complete, and truthful to the best of your knowledge. You understand that Smiline Family Dentistry relies on the information you submit to deliver effective and personalized dental care. Any false, misleading, or incomplete information may affect the quality of services provided. By submitting, you agree to notify Smiline Family Dentistry of any changes to your information as soon as possible.
-                                </Checkbox>
+                                    By submitting this form, I confirm that the information provided is accurate and complete to the best of my knowledge. I understand that providing false or misleading information may affect my care and that I am responsible for updating Smiline Family Dentistry with any changes to my health information.                                </Checkbox>
                             )}
                         </Field>
                         {errors.factualInfo && <div className="text-red-500">{errors.factualInfo}</div>}
@@ -99,6 +98,11 @@ const FormPageFinal: React.FC<FormPageFinalProps> = ({ initialValues, onSubmit, 
                                     </Button>
                                 </div>
                             </div>
+
+
+                            <p className='text-xs'>
+                                At Smiline Family Dentistry, your privacy is our priority. We are committed to protecting your personal health information in compliance with Ontario's Personal Health Information Protection Act (PHIPA) and Canada's Personal Information Protection and Electronic Documents Act (PIPEDA). We collect and use your personal information to provide you with safe and effective dental care. We follow industry-standard security practices, including data encryption and access controls, to protect your information from unauthorized access or disclosure. You have the right to access your information and request corrections if necessary. You may withdraw your consent at any time. If you choose to do so, please inform our staff, and we will discontinue the collection of your information. Your personal information will only be kept for as long as necessary to fulfill the purpose for which it was collected or as required by law. After this period, it will be securely deleted from our systems. For more information on our privacy practices or to make a request regarding your personal information, please contact us at contact@smilinedentistry.ca. By proceeding, you consent to the collection, use, and storage of your information as outlined in this notice.
+                            </p>
                         </div>
                         {errors.signature && <div className="text-red-500">{errors.signature}</div>}
                     </div>
