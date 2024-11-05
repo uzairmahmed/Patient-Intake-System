@@ -1,91 +1,36 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import { Button } from '@nextui-org/react';
-import * as Yup from 'yup';
 import { InputWithText } from '../components';
-
-const page2Schema = Yup.object().shape({
-    parentFirstName: Yup.string().when('isUnder18', {
-        is: (isUnder18: boolean) => isUnder18 === true,
-        then: (schema) => schema.required('Parent First Name is required'),
-        otherwise: (schema) => schema.nullable(),
-    }),
-    parentLastName: Yup.string().when('isUnder18', {
-        is: (isUnder18: boolean) => isUnder18 === true,
-        then: (schema) => schema.required('Parent Last Name is required'),
-        otherwise: (schema) => schema.nullable(),
-    }),
-    parentPhone: Yup.string().when('isUnder18', {
-        is: (isUnder18: boolean) => isUnder18 === true,
-        then: (schema) =>
-            schema
-                .matches(/^[0-9]{10}$/, 'Phone number must be 10 digits')
-                .required('Parent Phone is required'),
-        otherwise: (schema) => schema.nullable(),
-    }),
-    emergName: Yup.string().when('isUnder18', {
-        is: (isUnder18: boolean) => isUnder18 === false,
-        then: (schema) => schema.required('Emergency Contact Name is required'),
-        otherwise: (schema) => schema.nullable(),
-    }),
-    emergRelationship: Yup.string().when('isUnder18', {
-        is: (isUnder18: boolean) => isUnder18 === false,
-        then: (schema) => schema.required('Emergency Contact Relationship is required'),
-        otherwise: (schema) => schema.nullable(),
-    }),
-    emergPhone: Yup.string().when('isUnder18', {
-        is: (isUnder18: boolean) => isUnder18 === false,
-        then: (schema) =>
-            schema
-                .matches(/^[0-9]{10}$/, 'Phone number must be 10 digits')
-                .required('Emergency Contact Phone is required'),
-        otherwise: (schema) => schema.nullable(),
-    }),
-    doctorName: Yup.string().required('Doctor Name is required'),
-    doctorClinic: Yup.string().required('Doctor Clinic is required'),
-    doctorPhone: Yup.string()
-        .matches(/^[0-9]{10}$/, 'Phone number must be 10 digits')
-        .required('Doctor Phone is required'),
-});
-
+import { Page2Values, page2Schema } from '../interfaces';
 
 interface FormPage2Props {
-    initialValues: {
-        parentFirstName: string;
-        parentLastName: string;
-        parentPhone: string;
-        emergName: string;
-        emergRelationship: string;
-        emergPhone: string;
-        doctorName: string;
-        doctorClinic: string;
-        doctorPhone: string;
-    };
+    initialValues: Page2Values;
     birthdate: string;
     onNext: (values: any) => void;
     onBack: () => void;
 }
 
-const calculateAge = (birthdate: string): number => {
-    const birthDateObj = new Date(birthdate);
-    const today = new Date();
-    let age = today.getFullYear() - birthDateObj.getFullYear();
-    const monthDiff = today.getMonth() - birthDateObj.getMonth();
-
-    // Adjust age if birth date has not occurred this year yet
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDateObj.getDate())) {
-        age--;
-    }
-    return age;
-};
-
 const FormPage2: React.FC<FormPage2Props> = ({ initialValues, birthdate, onNext, onBack }) => {
+    const calculateAge = (birthdate: string): number => {
+        const birthDateObj = new Date(birthdate);
+        const today = new Date();
+        let age = today.getFullYear() - birthDateObj.getFullYear();
+        const monthDiff = today.getMonth() - birthDateObj.getMonth();
+
+        // Adjust age if birth date has not occurred this year yet
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDateObj.getDate())) {
+            age--;
+        }
+        return age;
+    };
+
     const isUnder18 = calculateAge(birthdate) < 18;
 
     return (
         <Formik
-        initialValues={{ ...initialValues, isUnder18 }}
-        validationSchema={page2Schema}
+            initialValues={{ ...initialValues, isUnder18 }}
+            validationSchema={page2Schema}
             onSubmit={(values) => onNext(values)}
         >
             {({ handleSubmit, errors }) => (

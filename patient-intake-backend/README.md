@@ -33,7 +33,7 @@
 ### Running the Emulator for Testing
 Use this command to start an emulator on your local machine: `firebase emulators:start --only functions`
    
-### Testing the Backend Endpoint 
+### Testing the Backend Endpoint -- DOES NOT WORK AFTER SWITCHING TO CALLABLEFUNCTIONS
 Using Postman, send a POST request to `http://localhost:5001/projectname/us-central1/functionname`, with a JSON payload of sample information.
 
 These are the payload fields:

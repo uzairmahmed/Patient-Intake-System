@@ -1,57 +1,11 @@
 import React from 'react';
-import { Formik, Form, Field } from 'formik';
-import { Input, Button, RadioGroup, Radio } from '@nextui-org/react';
-import * as Yup from 'yup';
+import { Formik, Form } from 'formik';
+import { Button } from '@nextui-org/react';
 import { QuestionWithDetails, QuestionWithInput, QuestionWithCheckboxes, QuestionWithoutDetails } from '../components';
-
-// Validation schema for page 2
-const page5Schema = Yup.object().shape({
-    dentalConcerns: Yup.string(),
-    painRightNow: Yup.string(),
-    painRightNowDetails: Yup.string(),
-    lastDentalVisit: Yup.string(),
-    lastDentalCleaning: Yup.string(),
-    lastXRays: Yup.string(),
-    gumBleeding: Yup.string(),
-    gumSwelling: Yup.string(),
-    dentalProblems: Yup.array(),
-    otherDentalProblems: Yup.string(),
-    jawProblems: Yup.string(),
-    upsettingExperience: Yup.string(),
-    upsettingExperienceDetails: Yup.string(),
-    botherDental: Yup.string(),
-    botherDentalDetails: Yup.string(),
-    smileChange: Yup.string(),
-    smileChangeDetails: Yup.string(),
-    premedication: Yup.string(),
-    premedicationDetails: Yup.string(),
-    medicationListing: Yup.string(),
-
-});
+import { Page5Values, page5Schema } from '../interfaces';
 
 interface FormPage5Props {
-    initialValues: {
-        dentalConcerns: string;
-        painRightNow: string;
-        painRightNowDetails: string;
-        lastDentalVisit: string;
-        lastDentalCleaning: string;
-        lastXRays: string;
-        gumBleeding: string;
-        gumSwelling: string;
-        dentalProblems: string[];
-        otherDentalProblems: string;
-        jawProblems: string;
-        upsettingExperience: string;
-        upsettingExperienceDetails: string;
-        botherDental: string;
-        botherDentalDetails: string;
-        smileChange: string;
-        smileChangeDetails: string;
-        premedication: string;
-        premedicationDetails: string;
-        
-    }
+    initialValues: Page5Values;
     onNext: (values: any) => void;
     onBack: () => void;
 }

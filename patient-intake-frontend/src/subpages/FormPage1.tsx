@@ -1,45 +1,11 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { Button, Select, SelectItem } from '@nextui-org/react';
-import * as Yup from 'yup';
 import { InputWithText } from '../components';
-
-// Validation schema for page 1
-const page1Schema = Yup.object().shape({
-    firstName: Yup.string().required('First Name is required'),
-    middleName: Yup.string(),
-    lastName: Yup.string().required('Last Name is required'),
-    dob: Yup.date().required('Date of Birth is required'),
-    healthCard: Yup.string(),
-    email: Yup.string().email('Invalid email').required('Email is required'),
-    mobilePhone: Yup.string()
-        .matches(/^[0-9]{10}$/, 'Mobile Phone must be 10 digits')
-        .required('Mobile Phone is required'),
-    homePhone: Yup.string()
-        .matches(/^[0-9]{10}$/, 'Home Phone must be 10 digits'),
-    address: Yup.string().required('Address is required'),
-    city: Yup.string().required('City is required'),
-    province: Yup.string().required('Province is required'),
-    postalCode: Yup.string()
-        .matches(/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/, 'Invalid Postal Code format')
-        .required('Postal Code is required'),
-});
+import { Page1Values, page1Schema } from '../interfaces';
 
 interface FormPage1Props {
-    initialValues: {
-        firstName: string;
-        middleName: string;
-        lastName: string;
-        dob: string;
-        healthCard: string;
-        email: string;
-        mobilePhone: string;
-        homePhone: string;
-        address: string;
-        city: string;
-        province: string;
-        postalCode: string;
-    };
+    initialValues: Page1Values
     onNext: (values: any) => void;
 }
 

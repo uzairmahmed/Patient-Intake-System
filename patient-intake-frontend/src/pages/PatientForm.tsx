@@ -4,79 +4,8 @@ import { FormPage1, FormPage2, FormPage3, FormPage4, FormPage5, FormPageFinal } 
 import FormPagePost from '../subpages/FormPagePost';
 import { submitFormData } from '../api/api';
 import FormPageError from '../subpages/FormPageError';
+import { FormValues } from '../interfaces/FormInterfaces';
 
-interface FormValues {
-    firstName: string;
-    middleName: string;
-    lastName: string;
-    dob: string;
-    healthCard: string;
-    email: string;
-    mobilePhone: string;
-    homePhone: string;
-    address: string;
-    city: string;
-    province: string;
-    postalCode: string;
-    parentFirstName: string;
-    parentLastName: string;
-    parentPhone: string;
-    emergName: string;
-    emergRelationship: string;
-    emergPhone: string;
-    doctorName: string;
-    doctorClinic: string;
-    doctorPhone: string;
-    isCovered: string,
-    nameOfInsured1: string;
-    birthdateOfInsured1: string;
-    relationshipToInsured1: string;
-    insuranceCarrier1: string;
-    employerForInsurance1: string;
-    policyNumber1: string;
-    idNumber1: string;
-    nameOfInsured2: string;
-    birthdateOfInsured2: string;
-    relationshipToInsured2: string;
-    insuranceCarrier2: string;
-    employerForInsurance2: string;
-    policyNumber2: string;
-    idNumber2: string;
-    lastMedicalCheckup: string;
-    medicationListing: string;
-    smoking: string;
-    alcohol: string;
-    seriousInjury: string;
-    seriousInjuryDetails: string;
-    allergies: string[];
-    otherAllergies: string;
-    devices: string[];
-    otherDevices: string;
-    conditions: string[];
-    otherConditions: string;
-    conditionsExplanation: string;
-    dentalConcerns: string;
-    painRightNow: string;
-    painRightNowDetails: string;
-    lastDentalVisit: string;
-    lastDentalCleaning: string;
-    lastXRays: string;
-    gumBleeding: string;
-    gumSwelling: string;
-    dentalProblems: string[];
-    otherDentalProblems: string;
-    jawProblems: string;
-    upsettingExperience: string;
-    upsettingExperienceDetails: string;
-    botherDental: string;
-    botherDentalDetails: string;
-    smileChange: string;
-    smileChangeDetails: string;
-    premedication: string;
-    premedicationDetails: string;
-    factualInfo: boolean;
-    signature: string;
-}
 
 const PatientForm: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(0);
@@ -151,9 +80,7 @@ const PatientForm: React.FC = () => {
         premedicationDetails: '',
         factualInfo: false,
         signature: '',
-
     });
-
 
     const handleFinalSubmit = async (values: FormValues) => {
         const finalFormData = { ...formValues, ...values };

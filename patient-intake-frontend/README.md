@@ -17,4 +17,8 @@
    3. Copy the firebaseConfig information to your .env file
    4. Go to `App Check > Apps` and select your web app
         - Copy your reCAPTCHA Sercet Key to the field under reCAPTCHA
-   - 
+
+## Testing
+1. Run the react project with `npm start`
+
+## Deployment

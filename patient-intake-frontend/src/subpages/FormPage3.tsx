@@ -1,66 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Formik, Form, Field } from 'formik';
-import { Input, Button, RadioGroup, Radio } from '@nextui-org/react';
-import * as Yup from 'yup';
+import { Button, RadioGroup, Radio } from '@nextui-org/react';
 import { InputWithText } from '../components';
-
-// Validation schema for page 2
-const page3Schema = Yup.object().shape({
-    isCovered: Yup.string().required('Please select if you are covered by insurance'),
-    nameOfInsured1: Yup.string().when('isCovered', {
-        is: (isCovered: string) => isCovered === 'covered',
-        then: (schema) => schema.required('Name of Insured is required'),
-        otherwise: (schema) => schema.notRequired(),
-    }),
-    birthdateOfInsured1: Yup.date().when('isCovered', {
-        is: (isCovered: string) => isCovered === 'covered',
-        then: (schema) => schema.required('Birthdate of Insured is required'),
-        otherwise: (schema) => schema.notRequired(),
-    }),
-    relationshipToInsured1: Yup.string().when('isCovered', {
-        is: (isCovered: string) => isCovered === 'covered',
-        then: (schema) => schema.required('Relationship to Insured is required'),
-        otherwise: (schema) => schema.notRequired(),
-    }),
-    insuranceCarrier1: Yup.string().when('isCovered', {
-        is: (isCovered: string) => isCovered === 'covered',
-        then: (schema) => schema.required('Insurance Carrier is required'),
-        otherwise: (schema) => schema.notRequired(),
-    }),
-    policyNumber1: Yup.string().when('isCovered', {
-        is: (isCovered: string) => isCovered === 'covered',
-        then: (schema) => schema.required('Policy/Group/Plan # is required'),
-        otherwise: (schema) => schema.notRequired(),
-    }),
-    employerForInsurance1: Yup.string(),
-    idNumber1: Yup.string(),
-    nameOfInsured2: Yup.string(),
-    birthdateOfInsured2: Yup.date(),
-    relationshipToInsured2: Yup.string(),
-    insuranceCarrier2: Yup.string(),
-    employerForInsurance2: Yup.string(),
-    policyNumber2: Yup.string(),
-    idNumber2: Yup.string(),
-});
+import { Page3Values, page3Schema } from '../interfaces';
 
 interface FormPage3Props {
-    initialValues: {
-        isCovered: string,
-        nameOfInsured1: string;
-        birthdateOfInsured1: string;
-        relationshipToInsured1: string;
-        insuranceCarrier1: string;
-        employerForInsurance1: string;
-        policyNumber1: string;
-        idNumber1: string;
-        nameOfInsured2: string;
-        birthdateOfInsured2: string;
-        relationshipToInsured2: string;
-        insuranceCarrier2: string;
-        employerForInsurance2: string;
-        policyNumber2: string;
-        idNumber2: string;
-    };
+    initialValues: Page3Values;
     onNext: (values: any) => void;
     onBack: () => void;
 }

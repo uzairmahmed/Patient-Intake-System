@@ -1,42 +1,14 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import { Button } from '@nextui-org/react';
-import * as Yup from 'yup';
 import { QuestionWithDetails, QuestionWithInput, QuestionWithCheckboxes, QuestionWithoutDetails } from '../components';
+import { Page4Values, page4Schema } from '../interfaces';
 
 // Validation schema for page 2
-const page4Schema = Yup.object().shape({
-    lastMedicalCheckup: Yup.string(),
-    medicationListing: Yup.string(),
-    smoking: Yup.string(),
-    alcohol: Yup.string(),
-    seriousInjury: Yup.string(),
-    seriousInjuryDetails: Yup.string(),
-    allergies: Yup.array(),
-    otherAllergies: Yup.string(),
-    devices: Yup.array(),
-    otherDevices: Yup.string(),
-    conditions: Yup.array(),
-    otherConditions: Yup.string(),
-    conditionsExplanation: Yup.string(),
-});
+
 
 interface FormPage4Props {
-    initialValues: {
-        lastMedicalCheckup: string;
-        medicationListing: string;
-        smoking: string;
-        alcohol: string;
-        seriousInjury: string;
-        seriousInjuryDetails: string;
-        allergies: string[];
-        otherAllergies: string;
-        devices: string[];
-        otherDevices: string;
-        conditions: string[];
-        otherConditions: string;
-        conditionsExplanation: string;
-    };
+    initialValues: Page4Values;
     onNext: (values: any) => void;
     onBack: () => void;
 }

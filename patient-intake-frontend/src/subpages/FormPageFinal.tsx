@@ -1,21 +1,12 @@
 import React, { useRef } from 'react';
 import { Formik, Form, Field } from 'formik';
-import { Input, Button, Checkbox, CheckboxIcon } from '@nextui-org/react';
+import { Button, Checkbox } from '@nextui-org/react';
 import Signature from '@uiw/react-signature';
-import * as Yup from 'yup';
 import { HiCheck, HiOutlineTrash } from "react-icons/hi";
-
-// Validation schema for the final page
-const finalPageSchema = Yup.object().shape({
-    factualInfo: Yup.boolean().oneOf([true], 'You must confirm that the information is factual'),
-    signature: Yup.string().required('Signature is required'),
-});
+import { PageFinalValues, finalPageSchema } from '../interfaces';
 
 interface FormPageFinalProps {
-    initialValues: {
-        factualInfo: boolean;
-        signature: string;
-    };
+    initialValues: PageFinalValues;
     onSubmit: (values: any) => void;
     onBack: () => void;
 }
