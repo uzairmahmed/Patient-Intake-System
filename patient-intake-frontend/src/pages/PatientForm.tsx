@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ProgressBar } from '../components';
 import { FormPage1, FormPage2, FormPage3, FormPage4, FormPage5, FormPageFinal } from '../subpages';
 import FormPagePost from '../subpages/FormPagePost';
+import { submitFormData } from '../api/api';
 
 interface FormValues {
     firstName: string;
@@ -153,9 +154,15 @@ const PatientForm: React.FC = () => {
     });
 
 
-    const handleFinalSubmit = (values: FormValues) => {
+    const handleFinalSubmit = async (values: FormValues) => {
         const finalFormData = { ...formValues, ...values };
-        console.log('Final form data:', JSON.stringify(finalFormData, null, 2));
+        // console.log('Final form data:', JSON.stringify(finalFormData, null, 2));
+        const formStatus = await submitFormData(finalFormData)
+        if (formStatus) {
+            setCurrentPage(6);
+        } else {
+
+        }
     };
 
     return (
@@ -223,7 +230,6 @@ const PatientForm: React.FC = () => {
                     <FormPageFinal
                         initialValues={formValues}
                         onSubmit={(values) => {
-                            setCurrentPage(6);
                             handleFinalSubmit({ ...formValues, ...values });
                         }}
                         onBack={() => setCurrentPage(4)}
@@ -231,7 +237,9 @@ const PatientForm: React.FC = () => {
                 )}
 
                 {currentPage === 6 && (
-                    <FormPagePost />
+                    <FormPagePost
+                        onBack={() => setCurrentPage(5)}
+                    />
                 )}
             </div>
         </div>
