@@ -58,11 +58,10 @@ export const page2Schema = Yup.object<Page2Values>().shape({
                 .required('Emergency Contact Phone is required'),
         otherwise: (schema) => schema.nullable(),
     }),
-    doctorName: Yup.string().required('Doctor Name is required'),
-    doctorClinic: Yup.string().required('Doctor Clinic is required'),
+    doctorName: Yup.string(),
+    doctorClinic: Yup.string(),
     doctorPhone: Yup.string()
         .matches(/^[0-9]{10}$/, 'Phone number must be 10 digits')
-        .required('Doctor Phone is required'),
 });
 
 export const page3Schema = Yup.object<Page3Values>().shape({

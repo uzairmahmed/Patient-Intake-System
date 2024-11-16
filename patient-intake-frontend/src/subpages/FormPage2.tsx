@@ -98,21 +98,21 @@ const FormPage2: React.FC<FormPage2Props> = ({ initialValues, birthdate, onNext,
                                     cols={2}
                                     name='doctorName'
                                     question='Name *'
-                                    required={true}
+                                    required={false}
                                     type='text'
                                 />
                                 <InputWithText
                                     cols={2}
                                     name='doctorClinic'
                                     question='Clinic Name *'
-                                    required={true}
+                                    required={false}
                                     type='text'
                                 />
                                 <InputWithText
                                     cols={2}
                                     name='doctorPhone'
                                     question='Phone Number *'
-                                    required={true}
+                                    required={false}
                                     type='tel'
                                 />
                             </div>
