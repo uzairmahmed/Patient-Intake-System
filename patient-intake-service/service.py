@@ -45,7 +45,7 @@ def download_file(bucket_name, blob_name, upload_date, base_folder, storage_clie
 def sync_local_with_bucket(bucket_name, base_folder, storage_client):
     """
     Sync the local folder with the bucket to ensure no files in the bucket are missed.
-    Only files that are not already in the local directory will be downloaded.
+    Only files that are not already in the local directory will be downloaded. !!!
     """
     bucket = storage_client.bucket(bucket_name)
     blobs = bucket.list_blobs()
